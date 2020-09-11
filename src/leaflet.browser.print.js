@@ -296,7 +296,6 @@ L.Control.BrowserPrint = L.Control.extend({
 		} else {
 			overlay.map.setView(this._map.getCenter(), this._map.getZoom());
     }
-    L.control.scale({ imperial: false }).addTo(overlay.map);
 
 		var interval = setInterval(function(){
 			if (!self._isTilesLoading(overlay.map)) {
@@ -525,6 +524,8 @@ L.Control.BrowserPrint = L.Control.extend({
 		options.tap = false;
 		options.touchZoom = false;
     var overlayMap = L.map(id, options);
+
+    L.control.scale({ imperial: false }).addTo(overlayMap);
 
 		if (printLayer) {
 			printLayer.addTo(overlayMap);
