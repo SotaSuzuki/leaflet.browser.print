@@ -287,7 +287,9 @@ L.Control.BrowserPrint = L.Control.extend({
 			document.title = this.options.documentTitle;
 		}
 
-		this._map.fire(L.Control.BrowserPrint.Event.PrintStart, { printLayer: origins.printLayer, printMap: overlay.map, printObjects: overlay.objects });
+    this._map.fire(L.Control.BrowserPrint.Event.PrintStart, { printLayer: origins.printLayer, printMap: overlay.map, printObjects: overlay.objects });
+    L.control.scale().addTo(this._map);
+
 
 		if (printMode.InvalidateBounds) {
 			overlay.map.fitBounds(origins.bounds);
@@ -523,7 +525,6 @@ L.Control.BrowserPrint = L.Control.extend({
 		options.tap = false;
 		options.touchZoom = false;
     var overlayMap = L.map(id, options);
-    L.control.scale().addTo(overlayMap);
 
 		if (printLayer) {
 			printLayer.addTo(overlayMap);
