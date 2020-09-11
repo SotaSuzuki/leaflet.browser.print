@@ -288,15 +288,15 @@ L.Control.BrowserPrint = L.Control.extend({
 		}
 
     this._map.fire(L.Control.BrowserPrint.Event.PrintStart, { printLayer: origins.printLayer, printMap: overlay.map, printObjects: overlay.objects });
-    L.control.scale().addTo(this._map);
 
 
 		if (printMode.InvalidateBounds) {
-			overlay.map.fitBounds(origins.bounds);
+      overlay.map.fitBounds(origins.bounds);
 			overlay.map.invalidateSize({reset: true, animate: false, pan: false});
 		} else {
 			overlay.map.setView(this._map.getCenter(), this._map.getZoom());
-		}
+    }
+    L.control.scale({ imperial: false }).addTo(overlay.map);
 
 		var interval = setInterval(function(){
 			if (!self._isTilesLoading(overlay.map)) {
